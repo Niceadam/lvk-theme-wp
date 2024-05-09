@@ -1,0 +1,19 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<article class="post-content">
+
+  <section>
+    <h1 class="wp-block-heading">{{ post.title }}</h1>
+    <div class="text-slate-500">
+      Posted <time datetime="{{ post.date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+    </div>
+
+    {% if post.thumbnail.src %}
+    <img src="{{post.thumbnail.src}}" />
+    {% endif %}
+
+    {{ post.content }}
+  </section>
+</article>
+{% endblock %}

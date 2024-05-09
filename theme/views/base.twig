@@ -1,0 +1,54 @@
+<!doctype html>
+<html {{ site.language_attributes }}>
+
+<head>
+  <meta charset="{{ site.charset }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="pingback" href="{{ site.pingback_url }}" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+  <style>
+    [x-cloak] {
+      display: none;
+    }
+  </style>
+  {{function('wp_head')}}
+</head>
+
+<body class="{{body_class}} overflow-y-scroll" data-template="base.twig">
+  <div class="bg-fixed bg-cover min-h-[950px] m-auto flex justify-center set-background">
+
+    <div class="w-[1000px] mt-4 space-y-2">
+      <!-- Header -->
+      {% include 'header.twig' %}
+
+      <div class="bg-white rounded-t p-2 flex">
+
+        <!-- Sidebar -->
+        {% include 'sidebar.twig' %}
+
+        <!-- Content -->
+        <div class="m-8 mt-6">
+          {% block content %}
+          Sorry, no content
+          {% endblock %}
+        </div>
+
+
+        {% block footer %}
+        {% include 'footer.twig' %}
+        {{ function('wp_footer') }}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<style>
+  .set-background {
+    background-image: linear-gradient(-90deg, rgba(120, 28, 28, 0.8), rgba(0, 0, 0, 0.7)),
+    url('{{ theme.path }}/assets/images/back.jpg')
+  }
+</style>

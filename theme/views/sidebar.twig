@@ -1,0 +1,48 @@
+{% set down_arrow %}
+<svg class="w-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+</svg>
+{% endset %}
+
+<div class="min-w-[210px] bg-zinc-200 text-zinc-600 pt-8">
+  <nav class="flex flex-col divide-y divide-slate-300 border-t border-b border-slate-300">
+
+    <!-- Home Item -->
+    <a href="/" class="py-2 px-6 hover:bg-zinc-100 {% if fn('is_front_page') %} bg-white {% endif %}">
+      Home
+    </a>
+
+
+    {% if sideMenu %}
+    {% for item in sideMenu.items %}
+    {% if item.children %}
+
+    <!-- Dropdown menu-->
+    <div x-data="{open: {{ sideMenu.current_item(1) == item ? 'true' : 'false' }} }">
+      <button @click="open = !open" class="w-full py-2 px-6 pr-4 flex justify-between items-center">
+        {{ item.title }}<span :class="!open || 'rotate-180'">{{ down_arrow }}</span>
+      </button>
+
+      <div x-cloak x-show="open" x-transition.origin x-transition.scale class="flex flex-col">
+        {% for child in item.children %}
+        <a href="{{ child.link }}"
+          class="py-2 px-6 pl-8 hover:bg-zinc-100 text-xs {% if child.current %} bg-white {% endif %}">
+          {{ child.title }}
+        </a>
+        {% endfor %}
+      </div>
+
+    </div>
+
+    {% else %}
+
+    <!-- Menu Item -->
+    <a href="{{ item.link }}" class="py-2 pl-6 hover:bg-zinc-100 {% if item.current %} bg-white {% endif %}">
+      {{ item.title }}
+    </a>
+
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+  </nav>
+</div>

@@ -1,0 +1,30 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<!-- Home Banner -->
+
+<!-- Posts -->
+{% for post in posts %}
+<article>
+  <div class="text-3xl font-bold mb-1 hover:text-slate-600">
+    <a href="{{post.link}}">{{post.title}}</a>
+  </div>
+
+  <div class="text-slate-400 mb-2">
+    Posted <time datetime="{{ post.date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+  </div>
+
+  {% if post.thumbnail.src %}
+  <img src="{{post.thumbnail.src}}" class="my-4" />
+  {% endif %}
+
+  <p>{{post.excerpt.length(50)}}</p>
+</article>
+<hr class="my-4">
+{% endfor %}
+
+<!-- Pagination -->
+{% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) }
+%}
+{% endblock %}

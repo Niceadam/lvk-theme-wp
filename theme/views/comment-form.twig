@@ -1,0 +1,10 @@
+<div class="comment-form bg-zinc-200 rounded">
+  <form class="comment-form" method="post" action="{{ site.site_url~'/wp-comments-post.php' }}">
+    <input placeholder="Your name" name="author"></input>
+    <input placeholder="Write a comment..." name="comment"></input>
+
+    <input name="comment_post_ID" value="{{ post.id }}" type="hidden">
+    <input name="comment_parent" value="{{ comment.ID|default('0') }}" type="hidden">
+    <button type="submit" name="Submit" class="btn">Send</button>
+  </form>
+</div>

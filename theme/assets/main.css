@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply tracking-tight
+}
+
+.post-content {
+  @apply prose;
+  @apply prose-a:text-red-800;
+  @apply prose-h1:mb-4;
+  @apply prose-h2:mb-1;
+  @apply prose-headings:mt-0;
+  @apply prose-headings:font-bold;
+  @apply prose-headings:text-slate-800;
+
+  @apply max-w-none;
+  font-size: inherit;
+  line-height: inherit;
+}

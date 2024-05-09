@@ -1,0 +1,24 @@
+<div class="relative flex h-[180px] feature-back rounded justify-between bg-cover">
+  <!-- Logo -->
+  {% set logo = get_image(theme.theme_mod('custom_logo')) %}
+  <a href="/" class="ml-10 self-center">
+    <img src="{{ logo }}" alt="logo" width="140" height="140">
+  </a>
+
+  <!-- Nav -->
+  {% if topMenu %}
+  <nav class="text-white flex font-bold bg-red-800 divide-x divide-slate-800 self-end">
+    {% for item in topMenu.items %}
+    <a target="{{ item.target }}" href="{{ item.link }}" class="py-2 px-4">
+      {{ item.title }}
+    </a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+</div>
+
+<style>
+  .feature-back {
+    background-image: url("{{ theme.theme_mod('header_image') }}");
+  }
+</style>
